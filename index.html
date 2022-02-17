@@ -16,9 +16,30 @@
     />
     <link rel="stylesheet" href="./style.css" />
     <script src="./script.js" defer></script>
+    <noscript>
+      <style>
+        #main-container {
+          display: none;
+        }
+
+        body {
+          background-color: var(--noscript);
+        }
+
+        #no-script {
+          display: block;
+          font-family: monospace;
+          font-size: 1.25rem;
+          color: #fff;
+          text-align: center;
+          transform: translateY(350%);
+        }
+      </style>
+    </noscript>
     <title>Progress Bar - Vanilla Javascript</title>
   </head>
   <body>
+    <div id="no-script">Sorry, your browser does not support JavaScript!</div>
     <main>
       <section id="main-container">
         <h1><span>Progress</span> Bar</h1>

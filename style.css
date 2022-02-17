@@ -5,12 +5,17 @@
   --step-bg: #fdfffc;
   --step-inactive: #96b58c;
   --step-active: #3b5234;
+  --noscript: #c41616;
 }
 
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+}
+
+#no-script {
+  display: none;
 }
 
 body {
@@ -144,11 +149,11 @@ h1:hover span {
   display: none;
   justify-self: center;
   background-color: var(--filled-progress);
+  padding: 20px 30px;
+  border-radius: 15px;
   font-family: "Pacifico", Arial, Helvetica, sans-serif;
   font-size: 3rem;
   color: var(--step-active);
-  padding: 20px 30px;
-  border-radius: 15px;
   opacity: 0;
   transform: translateY(-100px);
   transition: all 0.5s ease-in;
@@ -179,6 +184,11 @@ h1:hover span {
     cursor: pointer;
     text-transform: uppercase;
   }
+
+  #message {
+    max-width: 85%;
+    padding: 20px;
+  }
 }
 
 @media (max-width: 375px) {
@@ -189,5 +199,30 @@ h1:hover span {
     font-size: 0.85rem;
     font-weight: 200;
     border: 3px solid var(--empty-progress);
+  }
+
+  #message {
+    font-size: 2rem;
+  }
+}
+
+@media (prefers-reduced-motion) {
+  h1,
+  .step.active,
+  #steps-container,
+  #progress-bar,
+  #buttons-container .btn,
+  #message {
+    transform: none;
+    transition: none;
+  }
+
+  h1 span {
+    font-weight: 400;
+  }
+
+  h1:hover span {
+    color: inherit;
+    text-shadow: none;
   }
 }

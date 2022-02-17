@@ -9,6 +9,9 @@ const btnContainer = document.getElementById("buttons-container");
 const prevBtn = document.getElementById("prev");
 const nextBtn = document.getElementById("next");
 const submitBtn = document.getElementById("submit");
+const reducedMotion =
+  window.matchMedia("(prefers-reduced-motion)").matches ||
+  window.matchMedia("(prefers-reduced-motion: reduced)").matches;
 
 let curStep = 1;
 
@@ -76,19 +79,31 @@ function handleClick({ target }) {
 
 function handleSubmit() {
   stepsContainer.style.opacity = 0;
-  stepsContainer.style.transform = "translateY(100px)";
   btnContainer.style.opacity = 0;
-  btnContainer.style.transform = "translateY(150px)";
   title.style.opacity = 0;
-  title.style.transform = "translateY(200px)";
+  if (!reducedMotion) {
+    stepsContainer.style.transform = "translateY(100px)";
+    btnContainer.style.transform = "translateY(150px)";
+    title.style.transform = "translateY(200px)";
+  }
 
-  setTimeout(() => {
-    messageContainer.style.display = "block";
+  if (!reducedMotion) {
     setTimeout(() => {
-      messageContainer.style.opacity = 1;
-      messageContainer.style.transform = "translateY(0)";
+      messageContainer.style.display = "block";
+      setTimeout(() => {
+        messageContainer.style.opacity = 1;
+        messageContainer.style.transform = "translateY(-50px)";
+      }, 100);
+    }, 365);
+  } else {
+    setTimeout(() => {
+      messageContainer.style.transform = "translateY(-100px)";
+      messageContainer.style.display = "block";
+      setTimeout(() => {
+        messageContainer.style.opacity = 1;
+      }, 100);
     }, 100);
-  }, 365);
+  }
 }
 
 btnContainer.addEventListener("click", handleClick);

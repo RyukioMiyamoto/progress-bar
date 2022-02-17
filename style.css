@@ -1,7 +1,7 @@
 :root {
   --main-bg: #f5fdf2;
-  --empty-progress: #dbffcf;
-  --filled-progress: #acfa92;
+  --empty-progress: #e7ffe0;
+  --filled-progress: #87db6b;
   --step-bg: #fdfffc;
   --step-inactive: #96b58c;
   --step-active: #3b5234;
@@ -14,16 +14,17 @@
 }
 
 body {
-  font-family: "Source Sans Pro", Arial, Helvetica, sans-serif;
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
   background-color: var(--main-bg);
 }
 
 h1,
 h1 span,
+.step,
 #steps-container,
 #progress-bar,
-#buttons-container .btn .step {
-  transition: all 0.25s ease;
+#buttons-container .btn {
+  transition: all 0.365s ease-in;
 }
 
 h1 {
@@ -37,10 +38,12 @@ h1 {
 
 h1 span {
   font-weight: 700;
+  animation: glow 1.365s alternate-reverse infinite;
 }
 
 h1:hover span {
   color: var(--filled-progress);
+  text-shadow: 0 0 5px var(--filled-progress);
 }
 
 #main-container {
@@ -106,14 +109,15 @@ h1:hover span {
   justify-content: center;
   gap: 20px;
   text-transform: uppercase;
+  margin-top: 30px;
 }
 
 #buttons-container .btn {
   font-family: inherit;
   background-color: var(--filled-progress);
   border: none;
-  padding: 6px 12px;
-  border-radius: 5px;
+  padding: 12px 24px;
+  border-radius: 15px;
   font-weight: 600;
   color: var(--step-active);
   cursor: pointer;
@@ -140,13 +144,16 @@ h1:hover span {
   display: none;
   justify-self: center;
   background-color: var(--filled-progress);
+  font-family: "Pacifico", Arial, Helvetica, sans-serif;
   font-size: 3rem;
   color: var(--step-active);
   padding: 20px 30px;
-  border-radius: 20px;
+  border-radius: 15px;
   opacity: 0;
   transform: translateY(-100px);
-  transition: all 0.5s ease;
+  transition: all 0.5s ease-in;
+
+  box-shadow: 0 10px 35px 0 var(--step-inactive);
 }
 
 @media (max-width: 820px) {
@@ -159,9 +166,13 @@ h1:hover span {
     font-size: 1.85rem;
   }
 
+  #buttons-container {
+    margin-top: 10px;
+  }
+
   #buttons-container .btn {
-    padding: 15px 25px;
-    border-radius: 5px;
+    padding: 16px 30px;
+    border-radius: 15px;
     font-size: 1.25rem;
     font-weight: 600;
     color: var(--step-active);
